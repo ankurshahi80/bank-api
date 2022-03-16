@@ -1,5 +1,6 @@
 package com.revature.main;
 
+import com.revature.controller.AccountController;
 import com.revature.controller.ClientController;
 import com.revature.controller.Controller;
 import io.javalin.Javalin;
@@ -10,6 +11,7 @@ public class Driver {
         Javalin app = Javalin.create();
 
         map(app, new ClientController());
+        map(app, new AccountController());
 
         app.start();
     }
