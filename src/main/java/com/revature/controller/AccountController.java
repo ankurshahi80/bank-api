@@ -52,11 +52,22 @@ public class AccountController implements Controller {
         ctx.json(recordDeleted);
     };
 
+    private Handler updateAccountByIds = ctx -> {
+        String clientId = ctx.pathParam("id");
+        String accountNo = ctx.pathParam("account_id");
+        double balance = ctx.bodyAsClass(Account.class).getBalance();
+
+        Account updatedAccount = accountService.updateAccountByIds(clientId, accountNo, balance);
+
+        ctx.json(updatedAccount);
+    };
+
     @Override
     public void mapEndPoints(Javalin app) {
         app.post("/clients/{id}/accounts",addAccount);
         app.get("/clients/{id}/accounts",getAccountsByClientId);
         app.get("/clients/{id}/accounts/{account_id}", getAccountWithIds);
         app.delete("/clients/{id}/accounts/{account_id}",deleteAccount);
+        app.put("/clients/{id}/accounts/{account_id}", updateAccountByIds);
     }
 }

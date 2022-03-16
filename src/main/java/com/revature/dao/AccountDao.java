@@ -109,4 +109,20 @@ public class AccountDao {
             return false;
         }
     }
+
+    public Account updateAccountByIds(int clientId, int accountNo, double balance) throws SQLException {
+        try(Connection con = ConnectionUtility.getConnection()){
+            String query = "UPDATE accounts " +
+                    "SET balance = ?" +
+                    "WHERE (customer_id= ? AND account_no=?)";
+
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setDouble(1,balance);
+            pstmt.setInt(2,clientId);
+            pstmt.setInt(3, accountNo);
+
+            pstmt.executeUpdate();
+        }
+            return getAccountWithIds(clientId, accountNo);
+    }
 }

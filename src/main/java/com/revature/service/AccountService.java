@@ -59,4 +59,13 @@ public class AccountService {
 
         return accountDeleted;
     }
+
+    public Account updateAccountByIds(String clientId, String accountNo, double balance) throws SQLException {
+        int clntId = Integer.parseInt(clientId);
+        int actNo = Integer.parseInt(accountNo);
+
+        Account updatedAccount = this.accountDao.updateAccountByIds(clntId, actNo, balance);
+
+        return updatedAccount;
+    }
 }
