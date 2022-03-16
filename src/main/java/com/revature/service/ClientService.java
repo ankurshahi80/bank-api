@@ -32,4 +32,18 @@ public class ClientService {
 
         return recordDeleted;
     }
+
+    public Client addClient(Client client) throws SQLException {
+
+        Client newClient = this.clientDao.addClient(client);
+
+        return newClient;
+    }
+
+    public Client updateClient(String clientId, Client client) throws SQLException {
+        int intId = Integer.parseInt(clientId);
+        Client updatedClient = this.clientDao.updateClientById(intId,client);
+
+        return updatedClient;
+    }
 }
