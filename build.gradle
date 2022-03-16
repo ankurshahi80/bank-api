@@ -14,6 +14,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     //TODO 1: include the postgres driver dependency from mvnrepository.com
     implementation 'org.postgresql:postgresql:42.3.3'
+    // TODO include javalin to map api end points,
+    implementation 'io.javalin:javalin:4.3.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.10'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.4'
 
 }
 
