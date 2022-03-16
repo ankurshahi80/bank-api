@@ -5,6 +5,8 @@ import com.revature.service.AccountService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 
+import java.util.List;
+
 public class AccountController implements Controller {
 
     private AccountService accountService;
@@ -21,8 +23,20 @@ public class AccountController implements Controller {
 
       ctx.json(newAccount);
     };
+
+    private Handler getAccountsByClientId = (ctx) -> {
+        String id = ctx.pathParam("id");
+        String amountLessThan = ctx.queryParam("amountLessThan");
+        String amountGreaterThan = ctx.queryParam("amountGreaterThan");
+
+        List<Account> clientAccounts = accountService.getAccountsByClientId(id, amountLessThan, amountGreaterThan);
+
+        ctx.json(clientAccounts);
+    };
+
     @Override
     public void mapEndPoints(Javalin app) {
         app.post("/clients/{id}/accounts",addAccount);
+        app.get("/clients/{id}/accounts",getAccountsByClientId);
     }
 }

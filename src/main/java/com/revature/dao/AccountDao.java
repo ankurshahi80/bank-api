@@ -4,6 +4,8 @@ import com.revature.model.Account;
 import com.revature.utility.ConnectionUtility;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountDao {
 
@@ -34,5 +36,32 @@ public class AccountDao {
             }
         }
         return null;
+    }
+
+//    Get all account belonging to a client
+//    GET /clients/{id}/accounts
+//    GET /clients/{id}/accounts?amountLessThan=2000&amountGreaterThan=400
+    public List<Account> getAccountsByClientId(int clientId) throws SQLException {
+
+        List<Account> clientAccounts = new ArrayList<>();
+
+        try(Connection con = ConnectionUtility.getConnection()){
+
+            String query = "SELECT * FROM accounts WHERE customer_id =?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,clientId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                int accountNo = rs.getInt("account_no");
+                String accountType = rs.getString("account_type");
+                Double balance = rs.getDouble("balance");
+                int customerId = rs.getInt("customer_id");
+
+                Account account = new Account(accountNo, accountType, balance, customerId);
+                clientAccounts.add(account);
+            }
+            return clientAccounts;
+        }
     }
 }
