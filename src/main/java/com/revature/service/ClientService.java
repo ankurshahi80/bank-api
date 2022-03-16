@@ -25,4 +25,11 @@ public class ClientService {
 
         return client;
     }
+
+    public boolean deleteClientById(String clientId) throws SQLException {
+        int intId = Integer.parseInt(clientId);
+        Boolean recordDeleted = this.clientDao.deleteClientById(intId);
+
+        return recordDeleted;
+    }
 }

@@ -75,7 +75,16 @@ public class ClientDao {
     }
 
 //    delete a client by id (DELETE '/clients/{client_id})
-    public Client deleteClientById(int id){
-        return null;
+    public boolean deleteClientById(int id) throws SQLException {
+        try (Connection con = ConnectionUtility.getConnection()){
+            String query = "DELETE FROM clients WHERE id = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,id);
+
+            boolean recordDeleted = pstmt.execute();
+
+            return recordDeleted;
+
+        }
     }
 }

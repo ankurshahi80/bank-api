@@ -28,9 +28,17 @@ public class ClientController implements Controller{
         ctx.json(client);
     };
 
+    private Handler deleteClientById = (ctx) -> {
+        String id = ctx.pathParam("id");
+        boolean recordDeleted = clientService.deleteClientById(id);
+
+        ctx.json(recordDeleted);
+    };
+
     @Override
     public void mapEndPoints(Javalin app) {
         app.get("/clients", getAllClients);
         app.get("/clients/{id}", getClientById);
+        app.delete("/clients/{id}", deleteClientById);
     }
 }
