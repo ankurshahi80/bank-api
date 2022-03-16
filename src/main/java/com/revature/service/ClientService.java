@@ -17,4 +17,12 @@ public class ClientService {
     public List<Client> getAllClients() throws SQLException {
         return this.clientDao.getAllClients();
     }
+
+    public Client getClientById(String clientId) throws SQLException {
+
+        int intId = Integer.parseInt(clientId);
+        Client client = this.clientDao.getClientById(intId);
+
+        return client;
+    }
 }

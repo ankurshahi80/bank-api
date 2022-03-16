@@ -21,8 +21,16 @@ public class ClientController implements Controller{
         ctx.json(clients);
     };
 
+    private Handler getClientById = (ctx) -> {
+        String id = ctx.pathParam("id");
+        Client client = clientService.getClientById(id);
+
+        ctx.json(client);
+    };
+
     @Override
     public void mapEndPoints(Javalin app) {
         app.get("/clients", getAllClients);
+        app.get("/clients/{id}", getClientById);
     }
 }

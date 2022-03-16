@@ -48,7 +48,22 @@ public class ClientDao {
     }
 
 //    get (Read) a client by id (GET '/clients/{client_id}')
-    public Client getClientById(int id){
+    public Client getClientById(int clientId) throws SQLException {
+        try(Connection con = ConnectionUtility.getConnection()){
+            String query = "SELECT * FROM clients WHERE id = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1,clientId);
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                int id = rs.getInt("id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String email = rs.getString("email");
+
+                return new Client(id, firstName, lastName, email);
+            }
+        }
         return null;
     }
 
