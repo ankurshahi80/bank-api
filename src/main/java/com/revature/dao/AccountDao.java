@@ -64,4 +64,49 @@ public class AccountDao {
             return clientAccounts;
         }
     }
+
+    public Account getAccountWithIds(int clientId, int accountNo) throws SQLException {
+        try(Connection con = ConnectionUtility.getConnection()){
+            String query = "SELECT * FROM accounts WHERE customer_id= ? AND account_no=?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, clientId);
+            pstmt.setInt(2, accountNo);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()){
+                int actNo = rs.getInt("account_no");
+                String accountType = rs.getString("account_type");
+                Double balance = rs.getDouble("balance");
+                int customerId = rs.getInt("customer_id");
+
+                return new Account(actNo, accountType, balance, customerId);
+            }
+        }
+        return null;
+    }
+
+    public boolean deleteAccount(int clientId, int accountNo) throws SQLException {
+        try(Connection con = ConnectionUtility.getConnection()) {
+            String query = "SELECT * FROM accounts WHERE account_no = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, accountNo);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                int customerId = rs.getInt("customer_id");
+                if (customerId == clientId) {
+                    String query2 = "DELETE FROM accounts WHERE account_no = ?";
+                    PreparedStatement pstmt2 = con.prepareStatement(query2);
+                    pstmt2.setInt(1, accountNo);
+
+                    boolean recordDeleted = pstmt2.execute();
+                    System.out.println(recordDeleted);
+                    return recordDeleted;
+                }
+            }
+            return false;
+        }
+    }
 }

@@ -41,4 +41,22 @@ public class AccountService {
 
         return clientAccounts;
     }
+
+    public Account getAccountWithIds(String clientId, String accountNo) throws SQLException {
+        int clntId = Integer.parseInt(clientId);
+        int actNo = Integer.parseInt(accountNo);
+
+        Account account = this.accountDao.getAccountWithIds(clntId, actNo );
+
+        return account;
+    }
+
+    public boolean deleteAccount(String clientId, String accountNo) throws SQLException {
+        int clntId = Integer.parseInt(clientId);
+        int actNo = Integer.parseInt(accountNo);
+
+        boolean accountDeleted = this.accountDao.deleteAccount(clntId, actNo);
+
+        return accountDeleted;
+    }
 }
