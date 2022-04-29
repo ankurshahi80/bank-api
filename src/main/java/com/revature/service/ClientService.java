@@ -13,6 +13,7 @@ public class ClientService {
     public ClientService() {
         this.clientDao = new ClientDao();
     }
+    public ClientService(ClientDao mockClientDao){this.clientDao = mockClientDao;}
 
     public List<Client> getAllClients() throws SQLException {
         return this.clientDao.getAllClients();
