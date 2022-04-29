@@ -8,6 +8,7 @@ import java.sql.SQLException;
 public class ConnectionUtilityTest {
 
     @Test
+    @Ignore
     public void getConnection() throws SQLException {
         ConnectionUtility.getConnection();
     }
