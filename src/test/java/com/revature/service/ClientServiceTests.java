@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.dao.ClientDao;
+import com.revature.exception.ClientNotFoundException;
 import com.revature.model.Client;
 import org.junit.jupiter.api.Test;
 
@@ -8,8 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ClientServiceTests {
@@ -37,5 +37,28 @@ public class ClientServiceTests {
 
         assertEquals(fakeClients,actual);
 
+    }
+
+    @Test
+    public void clientNotFoundException(){
+        ClientDao mockClientDao = mock(ClientDao.class);
+        String clientId = "10";
+
+        ClientService clientService = new ClientService(mockClientDao);
+
+        assertThrows(ClientNotFoundException.class,()->{
+            clientService.getClientById(clientId);
+        });
+    }
+
+    @Test
+    public void clientWithNonNumericIdThrowsIllegalArgumentException(){
+        ClientDao mockClientDao = mock(ClientDao.class);
+        String clientId = "abc";
+        ClientService clientService = new ClientService(mockClientDao);
+
+        assertThrows(IllegalArgumentException.class,()->{
+            clientService.getClientById(clientId);
+        });
     }
 }
