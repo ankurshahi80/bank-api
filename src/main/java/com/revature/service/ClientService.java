@@ -1,6 +1,7 @@
 package com.revature.service;
 
 import com.revature.dao.ClientDao;
+import com.revature.exception.ClientNotFoundException;
 import com.revature.model.Client;
 
 import java.sql.SQLException;
@@ -19,12 +20,19 @@ public class ClientService {
         return this.clientDao.getAllClients();
     }
 
-    public Client getClientById(String clientId) throws SQLException {
+    public Client getClientById(String clientId) throws SQLException, ClientNotFoundException {
 
-        int intId = Integer.parseInt(clientId);
-        Client client = this.clientDao.getClientById(intId);
+        try {
+            int intId = Integer.parseInt(clientId);
+            Client client = this.clientDao.getClientById(intId);
 
-        return client;
+            if(client == null){
+                throw new ClientNotFoundException("Client with id: "+ clientId + " was not found");
+            }
+            return client;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Non numeric ID entered. Please enter a numeric Client Id");
+        }
     }
 
     public boolean deleteClientById(String clientId) throws SQLException {

@@ -1,10 +1,12 @@
 package com.revature.controller;
 
+import com.revature.exception.ClientNotFoundException;
 import com.revature.model.Client;
 import com.revature.service.ClientService;
 import io.javalin.Javalin;
 import io.javalin.http.Handler;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ClientController implements Controller{
@@ -23,9 +25,17 @@ public class ClientController implements Controller{
 
     private Handler getClientById = (ctx) -> {
         String id = ctx.pathParam("id");
-        Client client = clientService.getClientById(id);
+        try {
+            Client client = clientService.getClientById(id);
 
-        ctx.json(client);
+            ctx.json(client);
+        } catch (ClientNotFoundException e) {
+            ctx.json(e.getMessage());
+            ctx.status(404); // Not found
+        } catch (IllegalArgumentException e){
+            ctx.json(e.getMessage());
+            ctx.status(400); // Bad request
+        }
     };
 
     private Handler deleteClientById = (ctx) -> {
