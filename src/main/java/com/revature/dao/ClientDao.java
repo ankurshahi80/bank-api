@@ -111,10 +111,12 @@ public class ClientDao {
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setInt(1,id);
 
-            boolean recordDeleted = pstmt.execute();
+            int numberOfRecordsDeleted = pstmt.executeUpdate();
 
-            return recordDeleted;
-
+            if(numberOfRecordsDeleted == 1){
+                return true;
+            }
         }
+        return false;
     }
 }
