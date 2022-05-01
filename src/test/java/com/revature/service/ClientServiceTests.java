@@ -61,4 +61,41 @@ public class ClientServiceTests {
             clientService.getClientById(clientId);
         });
     }
+
+    @Test
+    public void getClientWithIdPositiveTest() throws SQLException, ClientNotFoundException {
+        List<Client> fakeClients = new ArrayList<>();
+        fakeClients.add(new Client(1,"John","Doe","JohnDoe@gmail.com"));
+        fakeClients.add(new Client(2,"Jane","Doe","JaneDoe@gmail.com"));
+
+        ClientDao mockClientDao = mock(ClientDao.class);
+        ClientService clientService = new ClientService(mockClientDao);
+
+        when(mockClientDao.getClientById(1)).thenReturn(new Client(1,"John","Doe","JohnDoe@gmail.com"));
+
+        Client expected = new Client(1,"John","Doe","JohnDoe@gmail.com");
+        Client actual = clientService.getClientById("1");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void deleteClientPositiveTest() throws SQLException {
+        ClientDao mockCientDao = mock(ClientDao.class);
+        ClientService clientService = new ClientService(mockCientDao);
+
+        when(mockCientDao.deleteClientById(1)).thenReturn(true);
+
+        assertTrue(clientService.deleteClientById("1"));
+    }
+
+    @Test
+    public void deleteClientNegativeTest() throws SQLException {
+        ClientDao mockCientDao = mock(ClientDao.class);
+        ClientService clientService = new ClientService(mockCientDao);
+
+        when(mockCientDao.deleteClientById(1)).thenReturn(false);
+
+        assertFalse(clientService.deleteClientById("1"));
+    }
 }
