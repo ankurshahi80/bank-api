@@ -3,6 +3,7 @@ package com.revature.main;
 import com.revature.controller.AccountController;
 import com.revature.controller.ClientController;
 import com.revature.controller.Controller;
+import com.revature.controller.ExceptionController;
 import io.javalin.Javalin;
 
 public class Driver {
@@ -12,6 +13,7 @@ public class Driver {
 
         map(app, new ClientController());
         map(app, new AccountController());
+        map(app, new ExceptionController());
 
         app.start();
     }
