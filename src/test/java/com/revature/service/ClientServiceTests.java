@@ -98,4 +98,18 @@ public class ClientServiceTests {
 
         assertFalse(clientService.deleteClientById("1"));
     }
+
+    @Test
+    public void updateClientByIdPositiveTest() throws SQLException {
+        ClientDao mockClientDao = mock(ClientDao.class);
+        ClientService clientService = new ClientService((mockClientDao));
+
+        when(mockClientDao.updateClientById(1,new Client(0,"John","Doe","Jd@gmail.com")))
+                .thenReturn(new Client(1,"John","Doe","Jd@gmail.com"));
+
+        Client expected = new Client(1,"John","Doe","Jd@gmail.com");
+        Client actual = clientService.updateClient("1",new Client(0,"John","Doe","Jd@gmail.com"));
+
+        assertEquals(expected, actual);
+    }
 }
