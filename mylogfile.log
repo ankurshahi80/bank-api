@@ -1,0 +1,106 @@
+16 03 2022 - 11:39:58.429 {main} INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+16 03 2022 - 11:39:58.460 {main} INFO  org.eclipse.jetty.util.log - Logging initialized @2695ms to org.eclipse.jetty.util.log.Slf4jLog
+16 03 2022 - 11:39:58.460 {main} INFO  io.javalin.Javalin - Starting Javalin ...
+16 03 2022 - 11:39:58.492 {main} INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+16 03 2022 - 11:39:58.492 {main} INFO  io.javalin.Javalin - No port specified, starting on port 8080. Call start(port) to change ports.
+16 03 2022 - 11:40:00.585 {main} INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+16 03 2022 - 11:40:00.585 {main} INFO  io.javalin.Javalin - Javalin started in 2125ms \o/
+16 03 2022 - 11:41:08.060 {main} INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+16 03 2022 - 11:41:08.075 {main} INFO  org.eclipse.jetty.util.log - Logging initialized @767ms to org.eclipse.jetty.util.log.Slf4jLog
+16 03 2022 - 11:41:08.075 {main} INFO  io.javalin.Javalin - Starting Javalin ...
+16 03 2022 - 11:41:08.123 {main} INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+16 03 2022 - 11:41:08.123 {main} INFO  io.javalin.Javalin - No port specified, starting on port 8080. Call start(port) to change ports.
+16 03 2022 - 11:41:08.451 {main} INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+16 03 2022 - 11:41:08.451 {main} INFO  io.javalin.Javalin - Javalin started in 376ms \o/
+16 03 2022 - 12:06:47.432 {main} INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+16 03 2022 - 12:06:47.448 {main} INFO  org.eclipse.jetty.util.log - Logging initialized @1121ms to org.eclipse.jetty.util.log.Slf4jLog
+16 03 2022 - 12:06:47.448 {main} INFO  io.javalin.Javalin - Starting Javalin ...
+16 03 2022 - 12:06:47.479 {main} INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+16 03 2022 - 12:06:47.479 {main} INFO  io.javalin.Javalin - No port specified, starting on port 8080. Call start(port) to change ports.
+16 03 2022 - 12:06:48.276 {main} INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+16 03 2022 - 12:06:48.276 {main} INFO  io.javalin.Javalin - Javalin started in 828ms \o/
+16 03 2022 - 12:07:01.503 {JettyServerThreadPool-15} INFO  com.revature.main.Driver - GET request received for /clients
+16 03 2022 - 12:07:38.603 {JettyServerThreadPool-16} INFO  com.revature.main.Driver - GET request received for /clients/19
+16 03 2022 - 12:07:49.464 {JettyServerThreadPool-14} INFO  com.revature.main.Driver - GET request received for /clients/11
+16 03 2022 - 12:08:02.499 {JettyServerThreadPool-16} INFO  com.revature.main.Driver - DELETE request received for /clients/19
+16 03 2022 - 12:08:12.282 {JettyServerThreadPool-14} INFO  com.revature.main.Driver - GET request received for /clients/19
+16 03 2022 - 12:08:12.401 {JettyServerThreadPool-14} WARN  io.javalin.Javalin - Uncaught exception
+java.lang.NullPointerException: Parameter specified as non-null is null: method io.javalin.http.Context.json, parameter obj
+	at io.javalin.http.Context.json(Context.kt)
+	at com.revature.controller.ClientController.lambda$new$1(ClientController.java:28)
+	at io.javalin.core.security.SecurityUtil.noopAccessManager(SecurityUtil.kt:20)
+	at io.javalin.http.JavalinServlet.addHandler$lambda-5(JavalinServlet.kt:115)
+	at io.javalin.http.JavalinServlet$service$tryBeforeAndEndpointHandlers$1.invoke(JavalinServlet.kt:44)
+	at io.javalin.http.JavalinServlet$service$tryBeforeAndEndpointHandlers$1.invoke(JavalinServlet.kt:39)
+	at io.javalin.http.JavalinServlet.service$tryWithExceptionMapper(JavalinServlet.kt:131)
+	at io.javalin.http.JavalinServlet.service$tryBeforeAndEndpointHandlers(JavalinServlet.kt:39)
+	at io.javalin.http.JavalinServlet.service(JavalinServlet.kt:87)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at io.javalin.jetty.JavalinJettyServlet.service(JavalinJettyServlet.kt:58)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+	at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:799)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:550)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1624)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:233)
+	at io.javalin.jetty.JettyServer$start$wsAndHttpHandler$1.doHandle(JettyServer.kt:52)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:188)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:501)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1594)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:186)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1349)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+	at org.eclipse.jetty.server.handler.StatisticsHandler.handle(StatisticsHandler.java:179)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:127)
+	at org.eclipse.jetty.server.Server.handle(Server.java:516)
+	at org.eclipse.jetty.server.HttpChannel.lambda$handle$1(HttpChannel.java:400)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:645)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:392)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:277)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:311)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:105)
+	at org.eclipse.jetty.io.ChannelEndPoint$1.run(ChannelEndPoint.java:104)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:338)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:315)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:173)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:131)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:409)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:883)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1034)
+	at java.lang.Thread.run(Thread.java:750)
+16 03 2022 - 12:08:17.803 {JettyServerThreadPool-16} INFO  com.revature.main.Driver - GET request received for /clients
+16 03 2022 - 12:08:40.845 {JettyServerThreadPool-14} INFO  com.revature.main.Driver - POST request received for /clients
+16 03 2022 - 12:09:02.406 {JettyServerThreadPool-16} INFO  com.revature.main.Driver - PUT request received for /clients/21
+16 03 2022 - 12:09:23.893 {JettyServerThreadPool-14} INFO  com.revature.main.Driver - GET request received for /clients/11/accounts
+16 03 2022 - 12:09:48.794 {JettyServerThreadPool-16} INFO  com.revature.main.Driver - GET request received for /clients/10/accounts
+16 03 2022 - 12:10:05.084 {JettyServerThreadPool-14} INFO  com.revature.main.Driver - GET request received for /clients/10/accounts
+16 03 2022 - 12:10:33.711 {JettyServerThreadPool-16} INFO  com.revature.main.Driver - GET request received for /clients/11/accounts
+16 03 2022 - 12:10:43.282 {JettyServerThreadPool-14} INFO  com.revature.main.Driver - GET request received for /clients/11/accounts
+16 03 2022 - 12:10:58.761 {JettyServerThreadPool-16} INFO  com.revature.main.Driver - GET request received for /clients/10/accounts/21
+16 03 2022 - 12:11:15.121 {JettyServerThreadPool-14} INFO  com.revature.main.Driver - PUT request received for /clients/11/accounts/15
+16 03 2022 - 12:11:35.146 {JettyServerThreadPool-16} INFO  com.revature.main.Driver - DELETE request received for /clients/10/accounts/21
+16 03 2022 - 12:11:49.329 {JettyServerThreadPool-14} INFO  com.revature.main.Driver - GET request received for /clients/10/accounts
