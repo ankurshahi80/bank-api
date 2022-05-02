@@ -80,6 +80,18 @@ public class ClientServiceTests {
     }
 
     @Test
+    public void getClientByID_sqlExceptionFromDao() throws SQLException {
+        ClientDao mockClientDao = mock(ClientDao.class);
+        when(mockClientDao.getClientById(anyInt())).thenThrow(SQLException.class);
+
+        ClientService clientService = new ClientService(mockClientDao);
+
+        assertThrows(SQLException.class, ()->{
+            clientService.getClientById("5");
+        });
+    }
+
+    @Test
     public void deleteClientPositiveTest() throws SQLException {
         ClientDao mockCientDao = mock(ClientDao.class);
         ClientService clientService = new ClientService(mockCientDao);
