@@ -40,7 +40,7 @@ public class ClientController implements Controller{
         Client clientToAdd = ctx.bodyAsClass(Client.class);
 
         Client newClient = clientService.addClient(clientToAdd);
-
+        ctx.status(201); // created
         ctx.json(newClient);
     };
 

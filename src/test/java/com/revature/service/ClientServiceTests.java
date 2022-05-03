@@ -112,10 +112,10 @@ public class ClientServiceTests {
     }
 
     @Test
-    public void updateClientByIdPositiveTest() throws SQLException {
+    public void updateClientByIdPositiveTest() throws SQLException, ClientNotFoundException {
         ClientDao mockClientDao = mock(ClientDao.class);
         ClientService clientService = new ClientService((mockClientDao));
-
+        when(mockClientDao.getClientById(1)).thenReturn(new Client());
         when(mockClientDao.updateClientById(1,new Client(0,"John","Doe","Jd@gmail.com")))
                 .thenReturn(new Client(1,"John","Doe","Jd@gmail.com"));
 
@@ -123,5 +123,83 @@ public class ClientServiceTests {
         Client actual = clientService.updateClient("1",new Client(0,"John","Doe","Jd@gmail.com"));
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void updateClientByIdNegativeTest() throws SQLException, ClientNotFoundException {
+        ClientDao mockClientDao = mock(ClientDao.class);
+        ClientService clientService = new ClientService((mockClientDao));
+        when(mockClientDao.getClientById(1)).thenReturn(null);
+
+        assertThrows(ClientNotFoundException.class,()->{
+            clientService.updateClient("1",new Client(0,"John","Doe","Jd@gmail.com"));
+        });
+
+    }
+
+    @Test
+    public void addClientPositiveTest() throws SQLException {
+        ClientDao mockClientDao = mock(ClientDao.class);
+
+        when(mockClientDao.addClient(eq(new Client(0,"John", "Doe", "Jd@gmail.com"))))
+                .thenReturn(new Client(10, "John", "Doe", "Jd@gmail.com"));
+
+        ClientService clientService = new ClientService(mockClientDao);
+
+        Client actual =  clientService.addClient(
+                new Client(0,"John", "Doe", "Jd@gmail.com")
+        );
+
+        Client expected = new Client(10, "John", "Doe", "Jd@gmail.com");
+
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void addClientWithLeadingAndTrainingFirstAndLastNames() throws SQLException {
+        ClientDao mockClientDao = mock(ClientDao.class);
+
+        when(mockClientDao.addClient(eq(new Client(0,"John", "Doe", "Jd@gmail.com"))))
+                .thenReturn(new Client(10, "John", "Doe", "Jd@gmail.com"));
+
+        ClientService clientService = new ClientService(mockClientDao);
+
+        Client actual = clientService.addClient(
+                new Client(0,"   John    ", "    Doe   ", "Jd@gmail.com")
+        );
+
+        Client expected = new Client(10, "John", "Doe", "Jd@gmail.com");
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void addClientWithNonAlphabeticalCharactersInFirstName() throws SQLException {
+        ClientDao mockClientDao = mock(ClientDao.class);
+        ClientService clientService = new ClientService(mockClientDao);
+
+        assertThrows(IllegalArgumentException.class,()->{
+            clientService.addClient(new Client(0, "John123","Doe","Jd@gmail.com" ));
+        });
+    }
+
+    @Test
+    public void addClientWithNonAplhabeticalCharactersInLastName(){
+        ClientDao mockClientDao = mock(ClientDao.class);
+        ClientService clientService = new ClientService(mockClientDao);
+
+        assertThrows(IllegalArgumentException.class,()->{
+            clientService.addClient(new Client(0, "John","Doe123","Jd@gmail.com" ));
+        });
+    }
+
+    @Test
+    public void addClientWithIncorrectEmailId(){
+        ClientDao mockClientDao = mock(ClientDao.class);
+        ClientService clientService = new ClientService(mockClientDao);
+
+        assertThrows(IllegalArgumentException.class,()->{
+            clientService.addClient(new Client(0, "John","Doe","Jdgmail.com" ));
+        });
     }
 }
